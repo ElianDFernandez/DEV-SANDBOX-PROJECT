@@ -21,7 +21,22 @@ Este sandbox es un espacio de práctica de desarrollo con una finalidad 100% fun
    ```bash
    git clone [https://github.com/ElianDFernandez/DEV-SANDBOX-PROJECT.git](https://github.com/ElianDFernandez/DEV-SANDBOX-PROJECT.git)
    ```
-
+1. Instalación de dependencias y levantado de contenedores:
+   ```
+   docker compose up -d --build
+   ```
+2. Acceder al contenedor backend para instalar dependencias:
+   ```
+   docker exec -it sandbox_backend bash
+   composer install
+   chown -R www-data:www-data storage bootstrap/cache
+   chmod -R 775 storage bootstrap/cache
+   cp .env.example .env
+   php artisan key:generate
+   php artisan migrate
+   exit
+   ```
+0. Accesos:
    ```
    🎨Frontend: http://localhost:5174
    🐬phpMyAdmin: http://localhost:8081 
